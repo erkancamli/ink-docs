@@ -93,7 +93,12 @@ import {
   INK_PUBLIC_PAYMASTER,
 } from "@hellomoon/ink-paymaster";
 
-const claim = encodePublicPaymasterRefundClaim(recipient);
+// Refund credit is tracked per token: claim the token you reimbursed in.
+const claim = encodePublicPaymasterRefundClaim(
+  recipient,
+  INK_PUBLIC_PAYMASTER,
+  "USDG",
+);
 const encodedCall = await smartAccount.encodeCalls([
   {
     to: INK_PUBLIC_PAYMASTER.paymaster,
